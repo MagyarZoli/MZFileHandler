@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MZFileHandler {
@@ -77,5 +78,33 @@ public class MZFileHandler {
         }
         scanner2.close();
         return fileRead;
-    }    
+    }
+    /**
+     * <h3>My File Read</h3> Overloaded
+     * @param fileName file-t amit szeretne beolvasni
+     * @param fileRead {@code ArrayList<String>} amibe szeretné, hogy feltöltse a {@code fileName} tartalmát
+     * @param nextLine <ul><li> {@code true} akkor {@code nextLine()} methodussal tölti fel a {@code fileRead}</li>
+     * <li>{@code false} akkor a {@code next()} methodussal tölti fel a {@code fielRead}</li></ul>
+     * @return fileRead
+     * @throws FileNotFoundException file nem található!
+     */
+    static ArrayList<String> mzFileRead(String fileName, ArrayList<String> fileRead, boolean nextLine)
+    throws FileNotFoundException {
+        File file = new File(fileName);
+        Scanner scanner = new Scanner(file);
+        if(file.canRead()){
+            if(nextLine){
+                while(scanner.hasNextLine()){
+                    fileRead.add(scanner.nextLine());
+                }
+            }
+            else{
+                while(scanner.hasNext()){
+                    fileRead.add(scanner.next());
+                }
+            }
+        }
+        scanner.close();
+        return fileRead;
+    }  
 }
