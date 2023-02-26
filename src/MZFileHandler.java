@@ -1,5 +1,6 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MZFileHandler {
      
@@ -24,6 +25,21 @@ public class MZFileHandler {
      * @throws IOException
      */
     static <Thing> void mzFileWrite(String fileName, Thing[] fileWrite)
+    throws IOException{
+        FileWriter file = new FileWriter(fileName);
+        for(Thing i : fileWrite){
+            file.write(String.valueOf(i));
+        }
+        file.close();
+    }
+    /**
+     * <h3>My File Write</h3> Overloaded
+     * @param <Thing>
+     * @param fileName file amibe szeretne írni
+     * @param fileWrite {@code ArrayList} szeretne beleírni a {@code fileName} -be
+     * @throws IOException
+     */
+    static <Thing> void mzFileWrite(String fileName, ArrayList<Thing> fileWrite)
     throws IOException{
         FileWriter file = new FileWriter(fileName);
         for(Thing i : fileWrite){
