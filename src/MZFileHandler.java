@@ -2,11 +2,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class MZFileHandler {
      
     /**
-     * <h3>My File Read</h3>
+     * <h3>My File Read</h3> Overloaded
      * @param fileName file-t amit szeretne beolvasni
      * @param fileRead {@code String} amibe szeretné, hogy feltöltse a {@code fileName} tartalmát
      * @param nextLine <ul><li> {@code true} akkor {@code nextLine()} methodussal tölti fel a {@code fileRead}</li>
@@ -34,7 +36,7 @@ public class MZFileHandler {
         return fileRead;
     }
     /**
-     * <h3>My File Read</h3>
+     * <h3>My File Read</h3> Overloaded
      * @param fileName file-t amit szeretne beolvasni
      * @param fileRead {@code String[]} amibe szeretné, hogy feltöltse a {@code fileName} tartalmát
      * <p>megjegyzés a tömb megadása paraméterként elöbb megfelelő méretűt kell ledekralálni, hogy feltudja tölteni</p>
@@ -107,4 +109,47 @@ public class MZFileHandler {
         scanner.close();
         return fileRead;
     }  
+
+    /** <h3>My File Write</h3> Overloaded
+     * @param <Thing>
+     * @param fileName file amibe szeretne írni
+     * @param fileWrite amit szeretne beleírni a {@code fileName} -be
+     * @throws IOException
+     */
+    static <Thing> void mzFileWrite(String fileName, Thing fileWrite)
+    throws IOException{
+        FileWriter file = new FileWriter(fileName);
+        file.write(String.valueOf(fileWrite));
+        file.close();
+    }
+    /**
+     * <h3>My File Write</h3> Overloaded
+     * @param <Thing>
+     * @param fileName file amibe szeretne írni
+     * @param fileWrite tömb amit szeretne beleírni a {@code fileName} -be
+     * @throws IOException
+     */
+    static <Thing> void mzFileWrite(String fileName, Thing[] fileWrite)
+    throws IOException{
+        FileWriter file = new FileWriter(fileName);
+        for(Thing i : fileWrite){
+            file.write(String.valueOf(i));
+        }
+        file.close();
+    }
+    /**
+     * <h3>My File Write</h3> Overloaded
+     * @param <Thing>
+     * @param fileName file amibe szeretne írni
+     * @param fileWrite {@code ArrayList} szeretne beleírni a {@code fileName} -be
+     * @throws IOException
+     */
+    static <Thing> void mzFileWrite(String fileName, ArrayList<Thing> fileWrite)
+    throws IOException{
+        FileWriter file = new FileWriter(fileName);
+        for(Thing i : fileWrite){
+            file.write(String.valueOf(i));
+        }
+        file.close();
+    }
 }
